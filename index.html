@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10%;
+        
+        }
+        .container{
+            background-color: rgb(75, 72, 72);
+            width: 360px;
+            padding: 50px;
+            border-radius: 10px;
+       
+           
+        }
+    #survey_options input{
+       margin-bottom: 10px;
+       outline: none;
+         
+       
+        }
+        .survey_options{
+            padding: 5px;
+        }
+        .controls{
+            display: flex;
+            align-items: center;
+            justify-content:space-between;
+        }
+        .controls a{
+           text-decoration: none;
+           padding: 5px;
+           border: 2px solid #fff;
+           font-size: 2vw;
+           border-radius: 10px;
+           color: #fff;
+        }
+        #add_fileds{
+            background-color: rgb(56, 222, 56);
+        }
+        #remove_fileds{
+            background-color: red;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="survey_options">
+            <input type="text" name="survey_options[]" class="survey_options" size="50">
+            <!-- <input type="text" name="survey_options[]" class="survey_options" size="50"> -->
+        </div>
+        <div class="controls">
+            <a href="#" id="add_fileds">Add</a>
+            <a href="#" id="remove_fileds">Remove</a>
+        </div>
+    </div>
+    <script>
+        let survey_options =document.getElementById('survey_options');
+        let add_fileds = document.getElementById('add_fileds');
+        let remove_fileds = document.getElementById('remove_fileds');
+
+        add_fileds.addEventListener('click',()=>{
+            let field =document.createElement('input');
+            let tags = survey_options.getElementsByTagName('input');
+            // console.log(tags); // this is HtmlCollection
+            field.setAttribute('type','text')
+            field.setAttribute('name','survey_options')
+            field.setAttribute('class','survey_options')
+            field.setAttribute('size','50')
+            // console.log(field);
+
+            survey_options.append(field)
+            if (tags.length>1) {
+                 document.getElementById('remove_fileds').style.visibility='visible'
+            }
+          
+        })
+        remove_fileds.addEventListener('click',()=>{
+            let tags =survey_options.getElementsByTagName('input');
+            if (tags.length>1) {
+                survey_options.removeChild(tags[(tags.length)-1]);
+                if (tags.length<=1) {
+                     document.getElementById('remove_fileds').style.visibility='hidden'
+                }
+            }
+        })
+    </script>
+</body>
+</html>
